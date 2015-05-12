@@ -1,4 +1,4 @@
-<?php namespace CodeCommerce\Http\Controllers;
+<?php namespace CodeCommerce\Http\Controllers\Admin;
 
 use CodeCommerce\Category;
 use CodeCommerce\Http\Requests;
@@ -6,7 +6,7 @@ use CodeCommerce\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class AdminCategoriesController extends Controller {
+class CategoriesController extends Controller {
 
     private $categories;
 
@@ -22,7 +22,7 @@ class AdminCategoriesController extends Controller {
 	public function index()
 	{
 		$categories = $this->categories->all();
-        return view('categories', compact('categories'));
+        return view('categories.index', compact('categories'));
 	}
 
 	/**
@@ -32,37 +32,40 @@ class AdminCategoriesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('categories.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param Request $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$input = $request->all();
+        $this->categories->fill($input)->save();
+        return redirect()->route('categories.index');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Category  $category
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Category $category)
 	{
-		//
+		dd($category);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Category  $category
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Category $category)
 	{
 		//
 	}
@@ -70,10 +73,10 @@ class AdminCategoriesController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  Category  $category
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Category $category)
 	{
 		//
 	}
@@ -81,10 +84,10 @@ class AdminCategoriesController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  Category  $category
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Category $category)
 	{
 		//
 	}

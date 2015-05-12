@@ -1,4 +1,4 @@
-<?php namespace CodeCommerce\Http\Controllers;
+<?php namespace CodeCommerce\Http\Controllers\Admin;
 
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
@@ -6,7 +6,7 @@ use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Product;
 use Illuminate\Http\Request;
 
-class AdminProductsController extends Controller {
+class ProductsController extends Controller {
 
 	private $products;
 
@@ -22,7 +22,7 @@ class AdminProductsController extends Controller {
 	public function index()
 	{
 		$products = $this->products->all();
-        return view('products', compact('products'));
+        return view('products.index', compact('products'));
 	}
 
 	/**
@@ -32,37 +32,41 @@ class AdminProductsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('products.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param Request $request
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
-	}
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $this->products->fill($input)->save();
+        return redirect()->route('products.index');
+
+    }
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Product $product
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Product $product)
 	{
-		//
+		dd($product);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Product $product
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Product $product)
 	{
 		//
 	}
@@ -70,10 +74,10 @@ class AdminProductsController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  Product $product
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Product $product)
 	{
 		//
 	}
@@ -81,10 +85,10 @@ class AdminProductsController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  Product $product
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Product $product)
 	{
 		//
 	}

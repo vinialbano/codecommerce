@@ -22,9 +22,11 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function boot(Router $router)
 	{
-		//
-		
 		parent::boot($router);
+        $router->model('category', 'CodeCommerce\Category');
+        $router->model('product', 'CodeCommerce\Product');
+        $router->pattern('category', '[0-9]+');
+        $router->pattern('product', '[0-9]+');
 	}
 
 	/**
