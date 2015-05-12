@@ -5,6 +5,7 @@
         <div class="row">
             <h1>Products</h1>
         </div>
+        @if(!$products->isEmpty())
         <div class="row">
             <table class="table table-hover">
                 <tr>
@@ -12,6 +13,8 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Featured</th>
+                    <th>Recommended</th>
                     <th>Action</th>
                 </tr>
                 @foreach($products as $product)
@@ -20,6 +23,8 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
                         <td>$ {{ $product->price }}</td>
+                        <td>{{ ($product->featured)?"True":"False" }}</td>
+                        <td>{{ ($product->recommended)?"True":"False" }}</td>
                         <td>
                             <a href="{{ route('products.edit', ['product' => $product->id]) }}"
                                class="btn btn-primary btn-sm">Edit</a>
@@ -30,6 +35,13 @@
                 @endforeach
             </table>
         </div>
+        @else
+            <div class="row">
+                <div class="alert alert-warning">
+                    <p>There are no recorded products</p>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <a href="{{ route('products.create') }}" class="btn btn-success">Create New Product</a>
         </div>

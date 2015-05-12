@@ -5,6 +5,7 @@
         <div class="row">
             <h1>Categories</h1>
         </div>
+        @if(!$categories->isEmpty())
         <div class="row">
             <table class="table">
                 <tr>
@@ -28,6 +29,13 @@
                 @endforeach
             </table>
         </div>
+        @else
+            <div class="row">
+                <div class="alert alert-warning">
+                    <p>There are no recorded categories</p>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <a href="{{ route('categories.create') }}" class="btn btn-success">Create New Category</a>
         </div>

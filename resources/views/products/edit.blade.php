@@ -31,6 +31,20 @@
             {!! Form::input('number', 'price', $product->price, ['class'   =>  'form-control', 'step' => '0.01']) !!}
         </div>
 
+        <!-- Featured Form Input -->
+        <div class="form-group">
+            {!! Form::label('featured','Featured:') !!}
+            {!! Form::hidden('featured', 0) !!}
+            {!! Form::checkbox('featured', 1, $product->featured) !!}
+        </div>
+
+        <!-- Recommended Form Input -->
+        <div class="form-group">
+            {!! Form::label('recommended','Recommended:') !!}
+            {!! Form::hidden('recommended', 0) !!}
+            {!! Form::checkbox('recommended', 1, $product->recommended) !!}
+        </div>
+
         <!-- Submit Button -->
         <div class="form-group">
             {!! Form::submit('Save Product', ['class' => 'btn btn-primary']) !!}
