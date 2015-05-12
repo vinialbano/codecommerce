@@ -21,21 +21,23 @@
             Route::group(['prefix' => 'categories'], function ()
             {
                 Route::get('/', ['as' => 'categories.index', 'uses' => 'CategoriesController@index']);
-                Route::get('/{category}', ['as' => 'categories.show', 'uses' => 'CategoriesController@show']);
-                Route::get('create', ['as' => 'categories.create', 'uses' => 'CategoriesController@create']);
                 Route::post('/', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);
+                Route::get('create', ['as' => 'categories.create', 'uses' => 'CategoriesController@create']);
+                Route::get('/{category}', ['as' => 'categories.show', 'uses' => 'CategoriesController@show']);
+                Route::get('/{category}/edit', ['as' => 'categories.edit', 'uses' => 'CategoriesController@edit']);
                 Route::put('/{category}', ['as' => 'categories.update', 'uses' => 'CategoriesController@update']);
-                Route::delete('/{category}', ['as' => 'categories.delete', 'uses' => 'CategoriesController@delete']);
+                Route::get('/{category}', ['as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy']);
             });
 
             Route::group(['prefix' => 'products'], function ()
             {
                 Route::get('/', ['as' => 'products.index', 'uses' => 'ProductsController@index']);
-                Route::get('/{product}', ['as' => 'products.show', 'uses' => 'ProductsController@show']);
-                Route::get('/create', ['as' => 'products.create', 'uses' => 'ProductsController@create']);
                 Route::post('/', ['as' => 'products.store', 'uses' => 'ProductsController@store']);
+                Route::get('create', ['as' => 'products.create', 'uses' => 'ProductsController@create']);
+                Route::get('/{product}', ['as' => 'products.show', 'uses' => 'ProductsController@show']);
+                Route::get('/{product}/edit', ['as' => 'products.edit', 'uses' => 'ProductsController@edit']);
                 Route::put('/{product}', ['as' => 'products.update', 'uses' => 'ProductsController@update']);
-                Route::delete('/{product}', ['as' => 'products.delete', 'uses' => 'ProductsController@delete']);
+                Route::get('/{product}', ['as' => 'products.destroy', 'uses' => 'ProductsController@destroy']);
             });
         });
     });

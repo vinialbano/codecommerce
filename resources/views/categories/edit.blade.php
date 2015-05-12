@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Create Product</h1>
+        <h1>Edit Category: {{ $category->name }}</h1>
 
         @if($errors->any())
             @foreach($errors->all() as $error)
@@ -10,33 +10,28 @@
             @endforeach
         @endif
 
-        <!-- Product Form -->
-        {!! Form::open(['route' => 'products.store']) !!}
+        <!-- Category Form -->
+        {!! Form::open(['route' => ['categories.update', $category->id], 'method' => 'PUT']) !!}
 
         <!-- Name Form Input -->
         <div class="form-group">
             {!! Form::label('name','Name:') !!}
-            {!! Form::text('name', NULL, ['class'   =>  'form-control']) !!}
+            {!! Form::text('name', $category->name, ['class'   =>  'form-control']) !!}
         </div>
 
         <!-- Description Form Input -->
         <div class="form-group">
             {!! Form::label('description','Description:') !!}
-            {!! Form::textarea('description', NULL, ['class'   =>  'form-control']) !!}
-        </div>
-
-        <!-- Price Form Input -->
-        <div class="form-group">
-            {!! Form::label('price','Price:') !!}
-            {!! Form::input('number', 'price', NULL, ['class'   =>  'form-control', 'step' => '0.01']) !!}
+            {!! Form::textarea('description', $category->description, ['class'   =>  'form-control']) !!}
         </div>
 
         <!-- Submit Button -->
         <div class="form-group">
-            {!! Form::submit('Add Product', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Save Category', ['class' => 'btn btn-primary']) !!}
         </div>
 
         {!! Form::close() !!}
 
     </div>
+
 @endsection
