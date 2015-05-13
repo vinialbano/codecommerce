@@ -14,7 +14,7 @@
             foreach (range(1, 40) as $i)
             {
                 Product::create([
-                    'name'        => $faker->word,
+                    'name'        => ucfirst($faker->word),
                     'description' => $faker->sentence(),
                     'price'       => $faker->randomFloat(2, 0, 10000),
                     'featured'    => $faker->numberBetween(0, 1),

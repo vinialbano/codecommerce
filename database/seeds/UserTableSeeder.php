@@ -10,7 +10,6 @@
             DB::table('users')->truncate();
 
             $faker = Faker::create('pt_BR');
-            $array = [];
 
             foreach (range(1, 20) as $i)
             {

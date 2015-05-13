@@ -42,7 +42,7 @@
             {!! Form::label('featured','Featured:') !!}
             {!! Form::hidden('featured', 0) !!}
             {!! Form::checkbox('featured', 1) !!}
-
+            &nbsp;&nbsp;
             {!! Form::label('recommended','Recommended:') !!}
             {!! Form::hidden('recommended', 0) !!}
             {!! Form::checkbox('recommended', 1) !!}
