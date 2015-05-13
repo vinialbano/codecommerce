@@ -19,6 +19,12 @@
             {!! Form::text('name', $product->name, ['class'   =>  'form-control']) !!}
         </div>
 
+        <!-- Category Form Input -->
+        <div class="form-group">
+            {!! Form::label('category','Category:') !!}
+            {!! Form::select('category_id', $categories, $product->category, ['class'   =>  'form-control']) !!}
+        </div>
+
         <!-- Description Form Input -->
         <div class="form-group">
             {!! Form::label('description','Description:') !!}

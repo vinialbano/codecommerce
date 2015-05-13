@@ -1,5 +1,6 @@
 <?php namespace CodeCommerce\Http\Controllers\Admin;
 
+use CodeCommerce\Category;
 use CodeCommerce\Http\Requests\ProductRequest;
 use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Product;
@@ -20,7 +21,7 @@ class ProductsController extends Controller {
      */
     public function index()
     {
-        $products = $this->productModel->all();
+        $products = $this->productModel->paginate(10);
 
         return view('products.index', compact('products'));
     }
@@ -28,11 +29,14 @@ class ProductsController extends Controller {
     /**
      * Show the form for creating a new resource.
      *
+     * @param Category $category
+     *
      * @return Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('products.create');
+        $categories = $category->lists('name', 'id');
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -67,13 +71,15 @@ class ProductsController extends Controller {
     /**
      * Show the form for editing the specified resource.
      *
+     * @param Category $category
      * @param  Product $product
      *
      * @return Response
      */
-    public function edit(Product $product)
+    public function edit(Category $category, Product $product)
     {
-        return view('products.edit', compact('product'));
+        $categories = $category->lists('name', 'id');
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**

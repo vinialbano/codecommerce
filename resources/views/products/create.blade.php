@@ -19,6 +19,12 @@
             {!! Form::text('name', NULL, ['class'   =>  'form-control']) !!}
         </div>
 
+        <!-- Category Form Input -->
+        <div class="form-group">
+            {!! Form::label('category','Category:') !!}
+            {!! Form::select('category_id', $categories, null, ['class'   =>  'form-control']) !!}
+        </div>
+
         <!-- Description Form Input -->
         <div class="form-group">
             {!! Form::label('description','Description:') !!}
@@ -31,15 +37,12 @@
             {!! Form::input('number', 'price', NULL, ['class'   =>  'form-control', 'step' => '0.01']) !!}
         </div>
 
-        <!-- Featured Form Input -->
+        <!-- Featured and Recommended Form Inputs -->
         <div class="form-group">
             {!! Form::label('featured','Featured:') !!}
             {!! Form::hidden('featured', 0) !!}
             {!! Form::checkbox('featured', 1) !!}
-        </div>
 
-        <!-- Recommended Form Input -->
-        <div class="form-group">
             {!! Form::label('recommended','Recommended:') !!}
             {!! Form::hidden('recommended', 0) !!}
             {!! Form::checkbox('recommended', 1) !!}

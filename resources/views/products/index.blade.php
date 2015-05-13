@@ -13,6 +13,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Featured</th>
                     <th>Recommended</th>
                     <th>Action</th>
@@ -23,6 +24,7 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
                         <td>$ {{ $product->price }}</td>
+                        <td>{{ $product->category->name }}</td>
                         <td>{{ ($product->featured)?"True":"False" }}</td>
                         <td>{{ ($product->recommended)?"True":"False" }}</td>
                         <td>
@@ -34,6 +36,9 @@
                     </tr>
                 @endforeach
             </table>
+        </div>
+        <div class="row">
+            {!! $products->render() !!}
         </div>
         @else
             <div class="row">

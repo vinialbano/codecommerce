@@ -29,6 +29,9 @@
                 @endforeach
             </table>
         </div>
+        <div class="row">
+            {!! $categories->render() !!}
+        </div>
         @else
             <div class="row">
                 <div class="alert alert-warning">
