@@ -148,9 +148,9 @@ class ProductsController extends Controller {
 
     public function destroyImage(Product $product, ProductImage $image)
     {
-        if (file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension))
+        if (file_exists(public_path() . '/uploads/image' . $image->id . '.' . $image->extension))
         {
-            Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
+            Storage::disk('public_local')->delete('image'. $image->id . '.' . $image->extension);
         }
         $image->delete();
 
