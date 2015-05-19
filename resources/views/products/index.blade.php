@@ -28,9 +28,11 @@
                         <td>{{ ($product->featured)?"True":"False" }}</td>
                         <td>{{ ($product->recommended)?"True":"False" }}</td>
                         <td>
-                            <a href="{{ route('products.edit', ['product' => $product->id]) }}"
+                            <a href="{{ route('products.edit', compact('product')) }}"
                                class="btn btn-primary btn-sm">Edit</a>
-                            <a href="{{ route('products.destroy', ['product' => $product->id]) }}"
+                            <a href="{{ route('products.images', compact('product')) }}"
+                               class="btn btn-default btn-sm">Images</a>
+                            <a href="{{ route('products.destroy', compact('product')) }}"
                                class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>

@@ -36,6 +36,13 @@
             Route::get('{product}/edit', ['as' => 'products.edit', 'uses' => 'ProductsController@edit']);
             Route::get('{product}/destroy', ['as' => 'products.destroy', 'uses' => 'ProductsController@destroy']);
             Route::put('{product}/update', ['as' => 'products.update', 'uses' => 'ProductsController@update']);
+
+            Route::group(['prefix' => '{product}/images'], function(){
+                Route::get('', ['as' => 'products.images', 'uses' => 'ProductsController@showImages']);
+                Route::get('create', ['as' => 'products.images.create', 'uses' => 'ProductsController@createImage']);
+                Route::get('{productImage}/destroy', ['as' => 'products.images.destroy', 'uses' => 'ProductsController@destroyImage']);
+                Route::post('store', ['as' => 'products.images.store', 'uses' => 'ProductsController@storeImage']);
+            });
         });
     });
 
