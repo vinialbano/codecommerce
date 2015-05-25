@@ -12,7 +12,7 @@
     */
 
     Route::get('/', 'StoreController@index');
-    Route::get('home', 'HomeController@index');
+    Route::get('category/{category}', ['as' => 'store.categories', 'uses' => 'StoreController@category']);
 
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function ()
     {
