@@ -16,7 +16,7 @@
         <!-- Name Form Input -->
         <div class="form-group">
             {!! Form::label('name','Name:') !!}
-            {!! Form::text('name', NULL, ['class'   =>  'form-control']) !!}
+            {!! Form::text('name', null, ['class'   =>  'form-control']) !!}
         </div>
 
         <!-- Category Form Input -->
@@ -28,13 +28,13 @@
         <!-- Description Form Input -->
         <div class="form-group">
             {!! Form::label('description','Description:') !!}
-            {!! Form::textarea('description', NULL, ['class'   =>  'form-control']) !!}
+            {!! Form::textarea('description', null, ['class'   =>  'form-control']) !!}
         </div>
 
         <!-- Price Form Input -->
         <div class="form-group">
             {!! Form::label('price','Price:') !!}
-            {!! Form::input('number', 'price', NULL, ['class'   =>  'form-control', 'step' => '0.01']) !!}
+            {!! Form::input('number', 'price', null, ['class'   =>  'form-control', 'step' => '0.01']) !!}
         </div>
 
         <!-- Featured and Recommended Form Inputs -->
@@ -46,6 +46,12 @@
             {!! Form::label('recommended','Recommended:') !!}
             {!! Form::hidden('recommended', 0) !!}
             {!! Form::checkbox('recommended', 1) !!}
+        </div>
+
+        <!-- Tags Form Input -->
+        <div class="form-group">
+            {!! Form::label('tags','Tags:') !!}
+            {!! Form::textarea('tags', null, ['class'   =>  'form-control']) !!}
         </div>
 
         <!-- Submit Button -->

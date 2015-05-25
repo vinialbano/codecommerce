@@ -48,6 +48,12 @@
             {!! Form::checkbox('recommended', 1, $product->recommended) !!}
         </div>
 
+        <!-- Tags Form Input -->
+        <div class="form-group">
+            {!! Form::label('tags','Tags:') !!}
+            {!! Form::textarea('tags', $product->tagList, ['class'   =>  'form-control']) !!}
+        </div>
+
         <!-- Submit Button -->
         <div class="form-group">
             {!! Form::submit('Save Product', ['class' => 'btn btn-primary']) !!}
