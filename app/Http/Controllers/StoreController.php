@@ -34,4 +34,12 @@ class StoreController extends Controller
         return view('store.category', compact('categories', 'category', 'products'));
     }
 
+    public function product(Product $product){ {
+
+        $categories = $this->categoryModel->all();
+        return view('store.product', compact('categories','product'));
+    }
+
+    }
+
 }
