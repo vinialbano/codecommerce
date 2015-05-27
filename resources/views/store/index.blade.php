@@ -1,7 +1,12 @@
 @extends('store.store')
 
-@section('categories')
-    @include('store.partials.categories')
+@section('sidebar')
+    <div class="col-sm-3">
+        <div class="left-sidebar">
+            @include('store.partials.categories')
+            @include('store.partials.tags')
+        </div>
+    </div>
 @endsection
 
 @section('content')

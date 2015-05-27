@@ -1,7 +1,12 @@
 @extends('store.store')
 
-@section('categories')
-    @include('store.partials.categories')
+@section('sidebar')
+    <div class="col-sm-3">
+        <div class="left-sidebar">
+            @include('store.partials.categories')
+            @include('store.partials.tags')
+        </div>
+    </div>
 @endsection
 
 @section('content')
@@ -37,13 +42,13 @@
                 <h2>{{ $product->category->name }} :: {{ $product->name }}</h2>
 
                 <p>{{ $product->description }}</p>
-                                <span>
-                                    <span>R$ {{ number_format($product->price,2,',','.') }}</span>
-                                        <a href="{{-- route('cart.add', compact('product')) --}}" class="btn btn-fefault cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Adicionar no Carrinho
-                                        </a>
-                                </span>
+                <span>
+                    <span>R$ {{ number_format($product->price,2,',','.') }}</span>
+                    <a href="{{-- route('cart.add', compact('product')) --}}" class="btn btn-fefault cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        Adicionar no Carrinho
+                    </a>
+                </span>
             </div>
             <!--/product-information-->
         </div>

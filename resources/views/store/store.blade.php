@@ -112,7 +112,7 @@
     <div class="container">
         <div class="row">
 
-            @yield('categories')
+            @yield('sidebar')
             @yield('content')
 
         </div>
