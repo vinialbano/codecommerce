@@ -11,15 +11,16 @@
     |
     */
 
-    Route::get('/', 'StoreController@index');
+    Route::get('', ['as' => 'store.index', 'uses' => 'StoreController@index']);
     Route::get('category/{category}', ['as' => 'store.categories', 'uses' => 'StoreController@category']);
     Route::get('product/{product}', ['as' => 'store.products', 'uses' => 'StoreController@product']);
     Route::get('tag/{tag}', ['as' => 'store.tags', 'uses' => 'StoreController@tag']);
+    Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
+    Route::get('cart/add/{product}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+    Route::get('cart/destroy/{product}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
 
-    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function ()
-    {
-        Route::group(['prefix' => 'categories'], function ()
-        {
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+        Route::group(['prefix' => 'categories'], function () {
             Route::get('', ['as' => 'categories.index', 'uses' => 'CategoriesController@index']);
             Route::post('', ['as' => 'categories.store', 'uses' => 'CategoriesController@store']);
             Route::get('create', ['as' => 'categories.create', 'uses' => 'CategoriesController@create']);
@@ -29,8 +30,7 @@
             Route::put('{category}/update', ['as' => 'categories.update', 'uses' => 'CategoriesController@update']);
         });
 
-        Route::group(['prefix' => 'products'], function ()
-        {
+        Route::group(['prefix' => 'products'], function () {
             Route::get('', ['as' => 'products.index', 'uses' => 'ProductsController@index']);
             Route::post('', ['as' => 'products.store', 'uses' => 'ProductsController@store']);
             Route::get('create', ['as' => 'products.create', 'uses' => 'ProductsController@create']);
@@ -39,15 +39,16 @@
             Route::get('{product}/destroy', ['as' => 'products.destroy', 'uses' => 'ProductsController@destroy']);
             Route::put('{product}/update', ['as' => 'products.update', 'uses' => 'ProductsController@update']);
 
-            Route::group(['prefix' => '{product}/images'], function(){
+            Route::group(['prefix' => '{product}/images'], function () {
                 Route::get('', ['as' => 'products.images', 'uses' => 'ProductsController@showImages']);
                 Route::get('create', ['as' => 'products.images.create', 'uses' => 'ProductsController@createImage']);
-                Route::get('{productImage}/destroy', ['as' => 'products.images.destroy', 'uses' => 'ProductsController@destroyImage']);
+                Route::get('{productImage}/destroy', ['as'   => 'products.images.destroy',
+                                                      'uses' => 'ProductsController@destroyImage'
+                ]);
                 Route::post('store', ['as' => 'products.images.store', 'uses' => 'ProductsController@storeImage']);
             });
         });
     });
-
 
     Route::controllers([
         'auth'     => 'Auth\AuthController',

@@ -15,7 +15,7 @@
         <div class="col-sm-5">
             <div class="view-product">
                 @if(count($product->images))
-                    <img src="{{ url('uploads/image'.$product->images->first()->id.'.'.$product->images->first()->extension) }}" alt=""/>
+                    <img src="{{ url('uploads/image'.$product->images->first()->id.'.'.$product->images->first()->extension) }}" alt="" width="200"/>
                 @else
                     <img src="{{ url('images/no-img.jpg') }}" alt="" width="200"/>
                 @endif
@@ -44,7 +44,7 @@
                 <p>{{ $product->description }}</p>
                 <span>
                     <span>R$ {{ number_format($product->price,2,',','.') }}</span>
-                    <a href="{{-- route('cart.add', compact('product')) --}}" class="btn btn-fefault cart">
+                    <a href="{{ route('cart.add', compact('product')) }}" class="btn btn-fefault cart">
                         <i class="fa fa-shopping-cart"></i>
                         Adicionar no Carrinho
                     </a>
