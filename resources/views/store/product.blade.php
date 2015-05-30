@@ -44,7 +44,7 @@
                 <p>{{ $product->description }}</p>
                 <span>
                     <span>R$ {{ number_format($product->price,2,',','.') }}</span>
-                    <a href="{{ route('cart.add', compact('product')) }}" class="btn btn-fefault cart">
+                    <a href="{{ route('cart.add', ['product' => $product, 'quantity' => 1]) }}" class="btn btn-fefault cart">
                         <i class="fa fa-shopping-cart"></i>
                         Adicionar no Carrinho
                     </a>

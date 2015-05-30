@@ -20,13 +20,18 @@
                         <tr>
                             <td class="cart_product">
                                 @if(count($item['product']->images))
-                                    <a href="{{ route('store.products', ['product' => $k]) }}"><img src="{{ url('uploads/image'.$item['product']->images->first()->id.'.'.$item['product']->images->first()->extension) }}" alt="" width="200"/></a>
+                                    <a href="{{ route('store.products', ['product' => $k]) }}"><img
+                                                src="{{ url('uploads/image'.$item['product']->images->first()->id.'.'.$item['product']->images->first()->extension) }}"
+                                                alt="" width="200"/></a>
                                 @else
-                                    <a href="{{ route('store.products', ['product' => $k]) }}"><img src="{{ url('images/no-img.jpg') }}" alt=""/></a>
+                                    <a href="{{ route('store.products', ['product' => $k]) }}"><img
+                                                src="{{ url('images/no-img.jpg') }}" alt=""/></a>
                                 @endif
                             </td>
                             <td class="cart_description">
-                                <h4><a href="{{ route('store.products', ['product' => $k]) }}">{{ $item['product']->name }}</a></h4>
+                                <h4>
+                                    <a href="{{ route('store.products', ['product' => $k]) }}">{{ $item['product']->name }}</a>
+                                </h4>
 
                                 <p>Código {{ $k }}</p>
                             </td>
@@ -34,10 +39,16 @@
                                 R$ {{ number_format($item['product']->price,2,',','.') }}
                             </td>
                             <td class="cart_quantity">
-                                {{ $item['quantity'] }}
+                                <select class="quantity" id="quantity{{ $k }}">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">
+                                <p class="cart_total_price" id="price{{ $k }}">
                                     R$ {{ number_format($item['product']->price * $item['quantity'],2,',','.') }}</p>
                             </td>
                             <td class="cart_delete">
@@ -54,7 +65,7 @@
                     <tr class="cart_menu">
                         <td colspan="6">
                             <div class="pull-right">
-                                <span style="margin-right: 90px">Total: R$ {{ $cart->getTotal() }}</span>
+                                <span style="margin-right: 90px" id="total">Total: R$ {{ number_format($cart->getTotal(),2,',','.') }}</span>
                                 <a href="#" class="btn btn-success">Finalizar compra</a>
                             </div>
                         </td>
@@ -64,4 +75,32 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('javascript')
+    <script>
+        $(document).ready(function () {
+            @foreach($cart->getItems() as $k=>$item)
+            $('#quantity' + {{ $k }} +' option[value="{{ $item['quantity'] }}"]').prop('selected', true);
+            @endforeach
+
+            $(".quantity").change(function () {
+                        var id = $(this).attr('id').replace('quantity', '');
+                        var quantity = $(this).val();
+                $.ajax({
+                    method: "GET",
+                    url: "cart/update/" + id + '/' +  quantity,
+                    data: {},
+                    success: function(result){
+                        if(result.success){
+                            $('#price' + id).text('R$ ' + result.price);
+                            $('#total').text('R$ ' + result.total);
+                        } else {
+                            alert("Ocorreu um erro e não conseguimos atualizar o carrinho");
+                        }
+                    }
+                })
+            });
+        });
+    </script>
 @endsection

@@ -144,6 +144,7 @@
 
 
 <script src="{{ elixir('js/all.js') }}"></script>
+@yield('javascript')
 
 </body>
 </html>

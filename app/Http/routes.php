@@ -16,8 +16,10 @@
     Route::get('product/{product}', ['as' => 'store.products', 'uses' => 'StoreController@product']);
     Route::get('tag/{tag}', ['as' => 'store.tags', 'uses' => 'StoreController@tag']);
     Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
-    Route::get('cart/add/{product}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+    Route::get('cart/add/{product}/{quantity}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+    Route::get('cart/update/{product}/{quantity}', ['as' => 'cart.update', 'uses' => 'CartController@update']);
     Route::get('cart/destroy/{product}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
+    Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
 
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::group(['prefix' => 'categories'], function () {
@@ -42,9 +44,7 @@
             Route::group(['prefix' => '{product}/images'], function () {
                 Route::get('', ['as' => 'products.images', 'uses' => 'ProductsController@showImages']);
                 Route::get('create', ['as' => 'products.images.create', 'uses' => 'ProductsController@createImage']);
-                Route::get('{productImage}/destroy', ['as'   => 'products.images.destroy',
-                                                      'uses' => 'ProductsController@destroyImage'
-                ]);
+                Route::get('{productImage}/destroy', ['as' => 'products.images.destroy', 'uses' => 'ProductsController@destroyImage']);
                 Route::post('store', ['as' => 'products.images.store', 'uses' => 'ProductsController@storeImage']);
             });
         });
