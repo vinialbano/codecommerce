@@ -15,7 +15,7 @@
         <div class="col-sm-5">
             <div class="view-product">
                 @if(count($product->images))
-                    <img src="{{ url('uploads/image'.$product->images->first()->id.'.'.$product->images->first()->extension) }}" alt="" width="200"/>
+                    <img src="{{ url(getImageUrl($product->images->first())) }}" alt="" width="200"/>
                 @else
                     <img src="{{ url('images/no-img.jpg') }}" alt="" width="200"/>
                 @endif
@@ -27,7 +27,7 @@
                 <div class="carousel-inner">
                     <div class="item active">
                         @foreach($product->images as $image)
-                            <a href="#"><img src="{{ url('uploads/image'.$image->id.'.'.$image->extension) }}" alt="" width="80"></a>
+                            <a href="#"><img src="{{ url(getImageUrl($image)) }}" alt="" width="80"></a>
                         @endforeach
                     </div>
 

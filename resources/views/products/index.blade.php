@@ -27,9 +27,9 @@
                         <td>{{ $product->category->name }}</td>
                         <td>{{ ($product->featured)?"True":"False" }}</td>
                         <td>{{ ($product->recommended)?"True":"False" }}</td>
-                        <td>
+                        <td class="btn-group">
                             <a href="{{ route('products.edit', compact('product')) }}"
-                               class="btn btn-primary btn-sm">Edit</a>
+                               class="btn btn-info btn-sm">Edit</a>
                             <a href="{{ route('products.images', compact('product')) }}"
                                class="btn btn-default btn-sm">Images</a>
                             <a href="{{ route('products.destroy', compact('product')) }}"

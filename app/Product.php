@@ -5,6 +5,32 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * CodeCommerce\Product
  *
+ * @property-read \CodeCommerce\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CodeCommerce\ProductImage[] $images
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CodeCommerce\Tag[] $tags
+ * @property-read mixed $tag_list
+ * @method static \CodeCommerce\Product featured()
+ * @method static \CodeCommerce\Product recommended()
+ * @method static \CodeCommerce\Product ofCategory($type)
+ * @method static \CodeCommerce\Product ofTag($type)
+ * @property integer $id
+ * @property string $name
+ * @property string $description
+ * @property float $price
+ * @property boolean $featured
+ * @property boolean $recommended
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property integer $category_id
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product wherePrice($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereFeatured($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereRecommended($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CodeCommerce\Product whereCategoryId($value)
  */
 class Product extends Model
 {

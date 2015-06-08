@@ -21,7 +21,7 @@
                             <td class="cart_product">
                                 @if(count($item['product']->images))
                                     <a href="{{ route('store.products', ['product' => $k]) }}"><img
-                                                src="{{ url('uploads/image'.$item['product']->images->first()->id.'.'.$item['product']->images->first()->extension) }}"
+                                                src="{{ url(getImageUrl($item['product']->images->first())) }}"
                                                 alt="" width="200"/></a>
                                 @else
                                     <a href="{{ route('store.products', ['product' => $k]) }}"><img
@@ -66,7 +66,7 @@
                         <td colspan="6">
                             <div class="pull-right">
                                 <span style="margin-right: 90px" id="total">Total: R$ {{ number_format($cart->getTotal(),2,',','.') }}</span>
-                                <a href="#" class="btn btn-success">Finalizar compra</a>
+                                <a href="{{ route('checkout.place') }}" class="btn btn-success">Finalizar compra</a>
                             </div>
                         </td>
                     </tr>

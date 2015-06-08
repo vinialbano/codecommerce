@@ -9,6 +9,8 @@
         {
             DB::table('users')->truncate();
 
+            User::create(['name' => 'Admin', 'email' => 'contato@tribitjr.com', 'password' => Hash::make('admin'), 'is_admin' => true]);
+
             $faker = Faker::create('pt_BR');
 
             foreach (range(1, 20) as $i)
