@@ -31,7 +31,17 @@
 
     /* Auth routes */
     Route::group(['middleware' => 'auth'], function(){
-        Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place', 'middleware' => 'auth']);
+
+        /* Checkout routes */
+        Route::group(['prefix' => 'checkout'], function(){
+            Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place', 'middleware' => 'auth']);
+        }); /* End checkout routes */
+
+        /* Account routes */
+        Route::group(['prefix' => 'account'], function(){
+            Route::get('orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
+
+        }); /* End account routes */
 
         /* Admin routes */
         Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
